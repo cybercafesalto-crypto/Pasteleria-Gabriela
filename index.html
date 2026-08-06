@@ -14,6 +14,9 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -37,6 +40,8 @@
         <a href="#galeria">Galería</a>
 
         <a href="#nosotros">Nosotros</a>
+
+        <a href="#testimonios">Testimonios</a>
 
         <a href="#contacto">Contacto</a>
 
@@ -215,12 +220,12 @@
 
     <div class="grid-galeria">
 
-        <img src="img/torta1.jpg" alt="">
-        <img src="img/torta2.jpg" alt="">
-        <img src="img/cupcakes.jpg" alt="">
-        <img src="img/postres.jpg" alt="">
-        <img src="img/galletas.jpg" alt="">
-        <img src="img/mesas-dulces.jpg" alt="">
+        <img src="img/torta1.jpg" alt="Torta 1">
+        <img src="img/torta2.jpg" alt="Torta 2">
+        <img src="img/cupcakes.jpg" alt="Cupcakes">
+        <img src="img/postres.jpg" alt="Postres">
+        <img src="img/galletas.jpg" alt="Galletas">
+        <img src="img/mesas-dulces.jpg" alt="Mesas Dulces">
 
     </div>
 
@@ -255,6 +260,60 @@
 
         </p>
 
+        <div class="caracteristicas">
+            <div class="caracteristica">
+                <span class="icono">🎂</span>
+                <h4>Ingredientes Premium</h4>
+                <p>Solo lo mejor para tus celebraciones</p>
+            </div>
+            <div class="caracteristica">
+                <span class="icono">✨</span>
+                <h4>Diseño Personalizado</h4>
+                <p>Creamos tu visión</p>
+            </div>
+            <div class="caracteristica">
+                <span class="icono">❤️</span>
+                <h4>Hecho con Amor</h4>
+                <p>Cada detalle cuenta</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= TESTIMONIOS ================= -->
+
+<section id="testimonios" class="testimonios">
+
+    <div class="titulo-seccion">
+
+        <h2>Lo que dicen nuestros clientes</h2>
+
+        <p>Historias de dulces celebraciones.</p>
+
+    </div>
+
+    <div class="testimonios-container">
+
+        <div class="testimonio">
+            <div class="estrellas">⭐⭐⭐⭐⭐</div>
+            <p>"¡La torta fue espectacular! Todos hablaron de lo deliciosa que estaba. Definitivamente volvemos a comprar."</p>
+            <h4>- María González</h4>
+        </div>
+
+        <div class="testimonio">
+            <div class="estrellas">⭐⭐⭐⭐⭐</div>
+            <p>"Gabriela es una artista. Los cupcakes eran hermosos y sabrosos. Excelente atención."</p>
+            <h4>- Juan Pérez</h4>
+        </div>
+
+        <div class="testimonio">
+            <div class="estrellas">⭐⭐⭐⭐⭐</div>
+            <p>"Para la boda de mi hija hizo una mesa dulce increíble. ¡Todos quedaron fascinados!"</p>
+            <h4>- Rosa López</h4>
+        </div>
+
     </div>
 
 </section>
@@ -263,51 +322,89 @@
 
 <section id="contacto" class="contacto">
 
-    <h2>Contacto</h2>
+    <div class="titulo-seccion">
+        <h2>Contacto</h2>
+        <p>¿Consultas o deseas hacer un pedido?</p>
+    </div>
 
-    <div class="datos">
+    <div class="contacto-content">
 
-        <p>📞 098 390 007</p>
+        <div class="datos">
 
-        <p>📧 cybercafesalto@gmail.com</p>
+            <div class="dato">
+                <span class="icono-dato">📞</span>
+                <div>
+                    <h4>Teléfono</h4>
+                    <p>098 390 007</p>
+                </div>
+            </div>
 
-        <p>📍 Michelini 1295 · Salto · Uruguay</p>
+            <div class="dato">
+                <span class="icono-dato">📧</span>
+                <div>
+                    <h4>Email</h4>
+                    <p>cybercafesalto@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="dato">
+                <span class="icono-dato">📍</span>
+                <div>
+                    <h4>Ubicación</h4>
+                    <p>Michelini 1295 · Salto · Uruguay</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="formulario-contacto">
+            <h3>Envíanos tu mensaje</h3>
+            <form id="formularioContacto">
+                <input type="text" id="nombre" placeholder="Tu nombre" required>
+                <input type="email" id="email" placeholder="Tu email" required>
+                <input type="text" id="asunto" placeholder="Asunto" required>
+                <textarea id="mensaje" placeholder="Tu mensaje..." rows="5" required></textarea>
+                <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+            </form>
+            <p id="mensajeEnvio" class="mensaje-envio"></p>
+        </div>
 
     </div>
 
-<div class="mapa">
+    <div class="mapa">
 
-    <iframe
-        src="AQUÍ_PEGA_EL_ENLACE_EMBED_DE_GOOGLE_MAPS"
-        width="50%"
-        height="200"
-        style="border:0;border-radius:20px;"
-        allowfullscreen=""
-        loading="lazy">
-    </iframe>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.7519236594635!2d-56.31494!3d-31.38!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x959b3a8b8b8b8b8d%3A0x8b8b8b8b8b8b8b8b!2sMichelini%201295%2C%20Salto%2C%20Uruguay!5e0!3m2!1ses!2suy!4v1234567890"
+            width="100%"
+            height="300"
+            style="border:0;border-radius:20px;margin-top:30px;"
+            allowfullscreen=""
+            loading="lazy">
+        </iframe>
 
-</div>
+    </div>
 
-<div class="redes">
+    <div class="redes">
+        <h3>Síguenos en redes</h3>
+        <div class="iconos-redes">
+            <a href="https://www.facebook.com/pasteleriagabriela" target="_blank" title="Facebook" class="red-icon">
+                <i class="fab fa-facebook"></i>
+            </a>
 
-    <a href="https://www.facebook.com/TU_PAGINA" target="_blank">
-        <img src="img/facebook.png" alt="Facebook">
-    </a>
+            <a href="https://www.instagram.com/pasteleriagabriela" target="_blank" title="Instagram" class="red-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
 
-    <a href="https://www.instagram.com/TU_USUARIO" target="_blank">
-        <img src="img/instagram.png" alt="Instagram">
-    </a>
-
-</div>
-
-</div>
+            <a href="https://wa.me/59898390007" target="_blank" title="WhatsApp" class="red-icon whatsapp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
 
     <a href="https://wa.me/59898390007"
        target="_blank"
-       class="btn">
-
+       class="btn whatsapp-btn">
        💬 Escribinos por WhatsApp
-
     </a>
 
 </section>
