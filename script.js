@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ===========================
 
     const elementos = document.querySelectorAll(
-        ".card, .nosotros-img, .nosotros-texto, .grid-galeria img"
+        ".card, .nosotros-img, .nosotros-texto, .grid-galeria img, .testimonio, .caracteristica"
     );
 
     const mostrar = () => {
@@ -148,6 +148,77 @@ document.addEventListener("DOMContentLoaded", () => {
 
         lightbox.style.display = "none";
 
+    });
+
+    // ===========================
+    // FORMULARIO DE CONTACTO
+    // ===========================
+
+    const formulario = document.getElementById("formularioContacto");
+    const mensajeDiv = document.getElementById("mensajeEnvio");
+
+    if (formulario) {
+        formulario.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const nombre = document.getElementById("nombre").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const asunto = document.getElementById("asunto").value.trim();
+            const mensaje = document.getElementById("mensaje").value.trim();
+
+            // Validar que los campos no estén vacíos
+            if (!nombre || !email || !asunto || !mensaje) {
+                mostrarMensaje("Por favor, completa todos los campos", "error");
+                return;
+            }
+
+            // Validar email básico
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                mostrarMensaje("Por favor, ingresa un email válido", "error");
+                return;
+            }
+
+            // Enviar por WhatsApp (opción 1 - más interactiva)
+            const mensajeWhatsApp = `Hola Gabriela! Tengo una consulta:%0A%0A*Nombre:* ${nombre}%0A*Email:* ${email}%0A*Asunto:* ${asunto}%0A%0A*Mensaje:*%0A${mensaje}`;
+            const urlWhatsApp = `https://wa.me/59898390007?text=${mensajeWhatsApp}`;
+
+            // O enviar por email (opción 2)
+            const urlEmail = `mailto:cybercafesalto@gmail.com?subject=${encodeURIComponent(asunto)}&body=Nombre: ${nombre}%0AEmail: ${email}%0A%0A${mensaje}`;
+
+            // Mostrar opciones
+            mostrarMensaje("✓ ¡Mensaje listo! Redirigiendo...", "exito");
+
+            // Redirigir a WhatsApp después de 1 segundo
+            setTimeout(() => {
+                window.open(urlWhatsApp, "_blank");
+                formulario.reset();
+            }, 1000);
+        });
+
+        function mostrarMensaje(texto, tipo) {
+            mensajeDiv.textContent = texto;
+            mensajeDiv.className = `mensaje-envio ${tipo}`;
+            
+            if (tipo === "error") {
+                setTimeout(() => {
+                    mensajeDiv.textContent = "";
+                }, 3000);
+            }
+        }
+    }
+
+    // ===========================
+    // EFECTO DE TECLA ENTER
+    // ===========================
+
+    const inputs = document.querySelectorAll("input, textarea");
+    inputs.forEach((input) => {
+        input.addEventListener("keypress", (e) => {
+            if (e.key === "Enter" && input.tagName !== "TEXTAREA") {
+                formulario.dispatchEvent(new Event("submit"));
+            }
+        });
     });
 
 });
