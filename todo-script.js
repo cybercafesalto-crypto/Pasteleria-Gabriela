@@ -9,13 +9,13 @@ const filterBtns = document.querySelectorAll('.filter-btn');
 let currentFilter = 'all';
 let todos = [];
 
-// Cargar tareas del localStorage al iniciar
+// Cargar pedidos del localStorage al iniciar
 document.addEventListener('DOMContentLoaded', () => {
     loadTodos();
     renderTodos();
 });
 
-// Agregar tarea al presionar Enter o click en el botón
+// Agregar pedido al presionar Enter o click en el botón
 addBtn.addEventListener('click', addTodo);
 todoInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
@@ -52,20 +52,20 @@ filterBtns.forEach(btn => {
     });
 });
 
-// Limpiar tareas completadas
+// Limpiar pedidos completados/entregados
 clearBtn.addEventListener('click', clearCompletedTodos);
 
-// Función para agregar una nueva tarea
+// Función para agregar un nuevo pedido
 function addTodo() {
     const text = todoInput.value.trim();
     
     if (text === '') {
-        alert('Por favor, escribe una tarea');
+        alert('Por favor, escribe un pedido');
         return;
     }
 
-    if (text.length > 100) {
-        alert('La tarea es demasiado larga (máximo 100 caracteres)');
+    if (text.length > 150) {
+        alert('El pedido es demasiado largo (máximo 150 caracteres)');
         return;
     }
 
@@ -73,7 +73,7 @@ function addTodo() {
         id: Date.now(),
         text: text,
         completed: false,
-        createdAt: new Date().toLocaleString()
+        createdAt: new Date().toLocaleString('es-ES')
     };
 
     todos.push(newTodo);
@@ -83,7 +83,7 @@ function addTodo() {
     renderTodos();
 }
 
-// Función para marcar una tarea como completada
+// Función para marcar un pedido como listo
 function toggleTodo(id) {
     todos = todos.map(todo => 
         todo.id == id ? { ...todo, completed: !todo.completed } : todo
@@ -92,25 +92,25 @@ function toggleTodo(id) {
     renderTodos();
 }
 
-// Función para eliminar una tarea
+// Función para eliminar un pedido
 function deleteTodo(id) {
-    if (confirm('¿Estás seguro de que quieres eliminar esta tarea?')) {
+    if (confirm('¿Estás seguro de que quieres eliminar este pedido?')) {
         todos = todos.filter(todo => todo.id != id);
         saveTodos();
         renderTodos();
     }
 }
 
-// Función para editar una tarea
+// Función para editar un pedido
 function editTodo(id) {
     const todo = todos.find(t => t.id == id);
     if (!todo) return;
 
-    const newText = prompt('Editar tarea:', todo.text);
+    const newText = prompt('Editar pedido:', todo.text);
     
     if (newText !== null && newText.trim() !== '') {
-        if (newText.length > 100) {
-            alert('La tarea es demasiado larga (máximo 100 caracteres)');
+        if (newText.length > 150) {
+            alert('El pedido es demasiado largo (máximo 150 caracteres)');
             return;
         }
         todos = todos.map(t => 
@@ -121,27 +121,27 @@ function editTodo(id) {
     }
 }
 
-// Función para limpiar tareas completadas
+// Función para limpiar pedidos entregados
 function clearCompletedTodos() {
     const completedCount = todos.filter(t => t.completed).length;
     
     if (completedCount === 0) {
-        alert('No hay tareas completadas para limpiar');
+        alert('No hay pedidos listos para eliminar');
         return;
     }
 
-    if (confirm(`¿Estás seguro de que quieres eliminar ${completedCount} tarea(s) completada(s)?`)) {
+    if (confirm(`¿Estás seguro de que quieres eliminar ${completedCount} pedido(s) listo(s)?`)) {
         todos = todos.filter(todo => !todo.completed);
         saveTodos();
         renderTodos();
     }
 }
 
-// Función para renderizar las tareas
+// Función para renderizar los pedidos
 function renderTodos() {
     todoList.innerHTML = '';
 
-    // Filtrar tareas según el filtro actual
+    // Filtrar pedidos según el filtro actual
     let filteredTodos = todos;
     if (currentFilter === 'active') {
         filteredTodos = todos.filter(todo => !todo.completed);
@@ -149,18 +149,18 @@ function renderTodos() {
         filteredTodos = todos.filter(todo => todo.completed);
     }
 
-    // Si no hay tareas
+    // Si no hay pedidos
     if (filteredTodos.length === 0) {
         todoList.innerHTML = `
             <div class="empty-state">
-                <p>📭 No hay tareas por mostrar</p>
+                <p>🍰 No hay pedidos por mostrar</p>
             </div>
         `;
         updateStats();
         return;
     }
 
-    // Crear elementos para cada tarea
+    // Crear elementos para cada pedido
     filteredTodos.forEach(todo => {
         const li = document.createElement('li');
         li.className = `todo-item ${todo.completed ? 'completed' : ''}`;
@@ -172,7 +172,9 @@ function renderTodos() {
                 data-id="${todo.id}" 
                 ${todo.completed ? 'checked' : ''}
             >
-            <span class="todo-text" title="${todo.text}">${escapeHtml(todo.text)}</span>
+            <span class="todo-text" title="${todo.text}">
+                ${escapeHtml(todo.text)}
+            </span>
             <div class="todo-actions">
                 <button class="btn-edit" data-id="${todo.id}">✏️ Editar</button>
                 <button class="btn-delete" data-id="${todo.id}">🗑️ Eliminar</button>
@@ -195,23 +197,23 @@ function updateStats() {
     document.getElementById('completedCount').textContent = completed;
     document.getElementById('pendingCount').textContent = pending;
 
-    // Desactivar botón de limpiar si no hay tareas completadas
+    // Desactivar botón de limpiar si no hay pedidos listos
     clearBtn.disabled = completed === 0;
 }
 
 // Función para guardar en localStorage
 function saveTodos() {
-    localStorage.setItem('todos', JSON.stringify(todos));
+    localStorage.setItem('pasteleriaGabriela_pedidos', JSON.stringify(todos));
 }
 
 // Función para cargar del localStorage
 function loadTodos() {
-    const saved = localStorage.getItem('todos');
+    const saved = localStorage.getItem('pasteleriaGabriela_pedidos');
     if (saved) {
         try {
             todos = JSON.parse(saved);
         } catch (e) {
-            console.error('Error al cargar tareas:', e);
+            console.error('Error al cargar pedidos:', e);
             todos = [];
         }
     }
@@ -223,12 +225,3 @@ function escapeHtml(text) {
     div.textContent = text;
     return div.innerHTML;
 }
-
-// Opcional: Limpiar todos los datos (descomenta si lo necesitas)
-// function clearAllData() {
-//     if (confirm('¿Estás seguro de que quieres eliminar TODAS las tareas? ⚠️')) {
-//         localStorage.removeItem('todos');
-//         todos = [];
-//         renderTodos();
-//     }
-// }
