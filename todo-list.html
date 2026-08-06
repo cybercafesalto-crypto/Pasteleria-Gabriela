@@ -3,42 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Tareas - To-Do List</title>
+    <title>Pedidos - Pastelería Gabriela</title>
     <link rel="stylesheet" href="todo-style.css">
 </head>
 <body>
     <div class="container">
         <div class="todo-wrapper">
-            <h1>📋 Mi Lista de Tareas</h1>
+            <h1>📦 Pedidos - Pastelería Gabriela</h1>
             
             <div class="input-container">
                 <input 
                     type="text" 
                     id="todoInput" 
-                    placeholder="Escribe una nueva tarea..." 
+                    placeholder="Ej: Pastel de Chocolate para el 15/08" 
                     class="todo-input"
                     autocomplete="off"
                 >
-                <button id="addBtn" class="btn-add">➕ Agregar</button>
+                <button id="addBtn" class="btn-add">➕ Agregar Pedido</button>
             </div>
 
             <div class="filters">
-                <button class="filter-btn active" data-filter="all">Todas</button>
-                <button class="filter-btn" data-filter="active">Activas</button>
-                <button class="filter-btn" data-filter="completed">Completadas</button>
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="active">Pendientes</button>
+                <button class="filter-btn" data-filter="completed">Listos</button>
             </div>
 
             <ul id="todoList" class="todo-list">
-                <!-- Las tareas se agregarán aquí dinámicamente -->
+                <!-- Los pedidos se agregarán aquí dinámicamente -->
             </ul>
 
             <div class="stats">
                 <span>Total: <strong id="totalCount">0</strong></span>
-                <span>Completadas: <strong id="completedCount">0</strong></span>
                 <span>Pendientes: <strong id="pendingCount">0</strong></span>
+                <span>Listos: <strong id="completedCount">0</strong></span>
             </div>
 
-            <button id="clearBtn" class="btn-clear">🗑️ Limpiar Completadas</button>
+            <button id="clearBtn" class="btn-clear">🗑️ Limpiar Entregados</button>
         </div>
     </div>
 
